@@ -22,6 +22,7 @@ public class WeatherServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		// Deklaracje zmiennych i powolanie klienta
 		WeatherClient client = new WeatherClient();
 		HttpSession session = request.getSession();
 		WeatherApiResponse resp = null;
@@ -29,11 +30,16 @@ public class WeatherServlet extends HttpServlet {
 		String city = request.getParameter("city");
 		String country = request.getParameter("country");
 		LocalDateTime now = LocalDateTime.now();
-		if(session.getAttribute(city)==null){
+		// Jezeli to pierwsze zapytanie to dodaje date jako atryb sesji
+		// (zapisuje wartosc o 11 minut mniejsza)
+		if (session.getAttribute(city) == null) {
 			session.setAttribute(city, now.minusMinutes(11));
 		}
+		// Pobiera date z atrybutu sesji
 		LocalDateTime fromSession = (LocalDateTime) session.getAttribute(city);
 		response.setContentType("text/html");
+		// Porownuje date terazniejsza z data z sesji dla danego miasta (jezeli
+		// roznica jest wieksza niz 10 minut to aktualizauje / dodaje nowe dane)
 		if (getSeconds(now) - getSeconds(fromSession) > 600) {
 			String qParam = city + "," + country;
 			session.setAttribute(city, now);
@@ -42,7 +48,8 @@ public class WeatherServlet extends HttpServlet {
 			respString = print(resp);
 			respString = createGoBackButton(respString);
 			response.getWriter().print(respString);
-		} else {
+		} // W przypadku gdy nie minelo 10 minut od ostatniej aktualizacji to wyswietla dane z pamieci aplikacji
+		else {
 			respString = print(client.getByName(city));
 			respString = createGoBackButton(respString);
 			response.getWriter().print(respString);

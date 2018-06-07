@@ -23,7 +23,7 @@ public class WeatherFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		String city = request.getParameter("city");
 		String country = request.getParameter("country");
 
@@ -31,8 +31,7 @@ public class WeatherFilter implements Filter {
 			HttpServletResponse resp = (HttpServletResponse) response;
 			resp.sendRedirect("/restapp/index.jsp");
 		} else
-
-		chain.doFilter(request, response);
+			chain.doFilter(request, response);
 	}
 
 	@Override
