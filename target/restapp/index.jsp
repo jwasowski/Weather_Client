@@ -7,6 +7,10 @@
 <title>Klient pogodowy</title>
 </head>
 <body>
+<header>
+    <h1>Klient pogodowy</h1>
+    <p>Sprawdz aktualna pogode w wybranym miescie.</p>
+  </header>
 	<form method="get">
 		Miasto: <select id="city" name="city">
 			<option value="Gdansk">Gdansk</option>
@@ -20,7 +24,8 @@
 		Panstwo: <select id="country" name="country">
 			<option value="pl">Polska</option>
 		</select>
-		<input type="submit" name="wyslij" value="wyslij" formaction="weather" />
+		<input type="submit" name="wyslij" value="Wyslij" formaction="weather" />
 		</form>
+		
 </body>
 </html>

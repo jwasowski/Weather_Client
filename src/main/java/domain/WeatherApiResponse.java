@@ -7,17 +7,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "coord", "base", "sys", "clouds", "visibility", "dt", "id", "cod" })
 public class WeatherApiResponse {
 
-	private List<Weather> weather;
+	private List<WeatherParams> weather;
 	private AtmospehricParams main;
-	private Wind wind;
-
+	private WindParams wind;
 	private String name;
 
-	public List<Weather> getWeather() {
+	public List<WeatherParams> getWeather() {
 		return weather;
 	}
 
-	public void setWeather(List<Weather> weather) {
+	public void setWeather(List<WeatherParams> weather) {
 		this.weather = weather;
 	}
 
@@ -29,11 +28,11 @@ public class WeatherApiResponse {
 		this.main = main;
 	}
 
-	public Wind getWind() {
+	public WindParams getWind() {
 		return wind;
 	}
 
-	public void setWind(Wind wind) {
+	public void setWind(WindParams wind) {
 		this.wind = wind;
 	}
 

@@ -12,12 +12,9 @@ import domain.WeatherApiResponse;
 
 public class WeatherClient {
 	public static final String URL = "http://api.openweathermap.org/data/2.5/weather";
-	//Wszystkie instancje tej klasy obsluguje jeden klient
 	private static Client client = ClientBuilder.newClient();
-	//Pamiec aplikacji
 	private static List<WeatherApiResponse> db = new ArrayList<WeatherApiResponse>();
 	
-	//Sparametryzowane zapytanie klienta (pyta api pogodowe)
 	public WeatherApiResponse getWeather(String q, String appId, String units, String lang) {
 		Response response = client.target(URL).queryParam("q", q).queryParam("APPID", appId).queryParam("units", units)
 				.queryParam("lang", lang).request(MediaType.APPLICATION_JSON).get();
